@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mag-iilog Tayo!</title>
+    <style>
+        body {
+            background: url('fb1f35e3-ea7a-43c9-8df7-4106d5d7ac11.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .title {
+            font-size: 50px;
+            font-weight: bold;
+            color: black;
+            text-shadow: 2px 2px 5px white;
+            margin-bottom: 40px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+        .choice-box {
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 25px;
+            font-weight: bold;
+            text-align: center;
+            border: 5px solid white;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            border: 5px solid black;
+            overflow: hidden;
+        }
+        .text-box {
+            padding: 10px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.7);
+            width: 100%;
+        }
+        #yesBox {
+            background: url('yes-image.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        #noBox {
+            background: url('no-image.jpg') no-repeat center center;
+            background-size: cover;
+        }
+        #yesBox .text-box {
+            color: green;
+        }
+        #noBox .text-box {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">NU NA</div>
+    <div class="container">
+        <div id="yesBox" class="choice-box">
+            <div class="text-box">Mag-iilog</div>
+        </div>
+        <div id="noBox" class="choice-box">
+            <div class="text-box">Hindi Mag-iilog</div>
+        </div>
+    </div>
+
+    <script>
+        let noBox = document.getElementById('noBox');
+        let yesBox = document.getElementById('yesBox');
+        let yesSize = 300;
+        let noSize = 300;
+        let maxSize = 800;
+
+        function moveBoxRandomly() {
+            let x = Math.random() * (window.innerWidth - noBox.offsetWidth);
+            let y = Math.random() * (window.innerHeight - noBox.offsetHeight);
+            noBox.style.position = 'absolute';
+            noBox.style.left = `${x}px`;
+            noBox.style.top = `${y}px`;
+        }
+
+        function showFinalScreen() {
+            document.body.style.background = "url('final-image.jpg') no-repeat center center fixed";
+            document.body.style.backgroundSize = "cover";
+            document.body.innerHTML = '<h1 style="font-size:50px; color: white; text-shadow: 2px 2px 5px black; text-align: center; margin-top: 20%;">TANGINA TARA NA KASI SET NA</h1>';
+        }
+
+        noBox.addEventListener('click', function() {
+            yesSize += 80;
+            noSize -= 20;
+            yesBox.style.width = yesSize + 'px';
+            yesBox.style.height = yesSize + 'px';
+            noBox.style.width = noSize + 'px';
+            noBox.style.height = noSize + 'px';
+            moveBoxRandomly();
+            if (yesSize >= maxSize) {
+                showFinalScreen();
+            }
+        });
+
+        yesBox.addEventListener('click', function() {
+            showFinalScreen();
+        });
+    </script>
+</body>
+</html>
